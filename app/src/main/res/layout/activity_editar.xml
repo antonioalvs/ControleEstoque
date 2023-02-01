@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Editar"
+    tools:layout_editor_absoluteX="-24dp"
+    tools:layout_editor_absoluteY="-34dp">
+
+    <TextView
+        android:id="@+id/lblNomeProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Nome do Produto:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="@+id/lblID"
+        app:layout_constraintTop_toBottomOf="@+id/lblID" />
+
+    <TextView
+        android:id="@+id/lblValorEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Preço do produto:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="@+id/txtEditNome"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditNome" />
+
+    <EditText
+        android:id="@+id/txtEditNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblNomeProduto"
+        app:layout_constraintTop_toBottomOf="@+id/lblNomeProduto" />
+
+    <EditText
+        android:id="@+id/txtEditValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/lblValorEdit"
+        app:layout_constraintTop_toBottomOf="@+id/lblValorEdit" />
+
+    <EditText
+        android:id="@+id/txtEditQtdA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintStart_toStartOf="@+id/lblQtdAEdit"
+        app:layout_constraintTop_toBottomOf="@+id/lblQtdAEdit" />
+
+    <TextView
+        android:id="@+id/lblQtdAEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Quantidade em Estoque:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="@+id/txtEditValor"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditValor" />
+
+    <TextView
+        android:id="@+id/lblQtdMEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Quantidade Minima:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="@+id/txtEditQtdA"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditQtdA" />
+
+    <EditText
+        android:id="@+id/txtEditQtdM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/lblQtdMEdit"
+        app:layout_constraintTop_toBottomOf="@+id/lblQtdMEdit" />
+
+    <TextView
+        android:id="@+id/lblID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Atualizar Produto"
+        app:layout_constraintEnd_toEndOf="@+id/txtEditQtdM"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditQtdM" />
+
+</android.support.constraint.ConstraintLayout>

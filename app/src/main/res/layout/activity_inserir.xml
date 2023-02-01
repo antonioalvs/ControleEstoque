@@ -10,25 +10,25 @@
 
     <TextView
         android:id="@+id/lblCodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_width="190dp"
+        android:layout_height="38dp"
         android:layout_marginTop="60dp"
         android:text="Codigo"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/txtNome"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Nome do produto"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/lblCodigo"
-        app:layout_constraintTop_toBottomOf="@+id/lblCodigo" />
+        app:layout_constraintTop_toBottomOf="@+id/lblCodigo"
+        tools:layout_editor_absoluteX="58dp" />
 
     <EditText
         android:id="@+id/txtValor"
@@ -37,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Valor"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/txtNome"
         app:layout_constraintTop_toBottomOf="@+id/txtNome" />
@@ -68,39 +68,11 @@
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
         android:text="Salvar"
         app:layout_constraintStart_toEndOf="@+id/txtQtdAtual"
         app:layout_constraintTop_toBottomOf="@+id/txtQtdAtual" />
-
-    <ScrollView
-        android:id="@+id/SCROLLER_ID"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginTop="48dp"
-        android:fillViewport="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSalvar">
-
-        <TextView
-            android:id="@+id/lblResult"
-            android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1.0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSalvar"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/txtQtdAtual"
-            app:layout_constraintTop_toBottomOf="@+id/txtQtdAtual"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

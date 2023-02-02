@@ -13,21 +13,23 @@
         android:theme="@style/Theme.ControleEstoque"
         tools:targetApi="31">
         <activity
+            android:name=".Teste"
+            android:exported="false" />
+        <activity
             android:name=".Editar"
             android:exported="false"
-            android:label="Editar Produto"/>
+            android:label="Editar Produto" />
         <activity
             android:name=".Gerenciar"
             android:exported="false"
-            android:label="Gerenciar Estoque"/>
+            android:label="Gerenciar Estoque" />
         <activity
             android:name=".Inserir"
             android:exported="false"
             android:label="Adicionar Produtos">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value=""
-                />
+                android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"

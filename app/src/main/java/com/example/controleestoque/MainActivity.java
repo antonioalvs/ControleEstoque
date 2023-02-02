@@ -38,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         rel = findViewById(R.id.btnRelatorio);
         rel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent relatorio = new Intent(getApplicationContext(), Gerenciar.class);
-                startActivity(relatorio);
+                //Intent relatorio = new Intent(getApplicationContext(), Teste.class);
+                //startActivity(relatorio);
             }
         });
-         */
+
     }
 }

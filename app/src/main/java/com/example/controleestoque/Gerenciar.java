@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,12 +18,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.controleestoque.databinding.ActivityGerenciarBinding;
+import com.example.controleestoque.databinding.ActivityTesteBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
 
-public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class Gerenciar extends AppCompatActivity implements SelectListener{
 
 
 
@@ -30,7 +34,8 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
     Estoque et = new Estoque();
     Button pesquisar;
     EditText txtPesquisa;
-    ListView txtConsulta;
+
+    ActivityGerenciarBinding binding;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,18 +43,16 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gerenciar);
 
+        binding = ActivityGerenciarBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        initRecyclerView();
+
+
         Realm.init(this);
         Realm realm = Realm.getDefaultInstance();
         pesquisar = findViewById(R.id.btnPesquisa);
-        txtConsulta = findViewById(R.id.listView);
         txtPesquisa = findViewById(R.id.txtPesquisa);
-        List<String> produto;
-        produto = et.read(realm);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                et.read(realm));
-        txtConsulta.setAdapter(adapter);
-        txtConsulta.setOnItemClickListener(this);
+
 
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,14 +62,12 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
                     ArrayAdapter<String> adapt = new ArrayAdapter<>(Gerenciar.this,
                             android.R.layout.simple_list_item_1,
                             et.read(realm));
-                    txtConsulta.setAdapter(adapt);
+                    initRecyclerView();
                 }else{
-                    List<String> search;
+                    List<Estoque> search;
                     search = et.pesquisaNome(realm, txtPesquisa.getText().toString());
-                    ArrayAdapter<String> adapterPesquisa = new ArrayAdapter<>(Gerenciar.this,
-                            android.R.layout.simple_list_item_1,
-                            search);
-                    txtConsulta.setAdapter(adapterPesquisa);
+                    Adapter srch = new Adapter(search, Gerenciar.this);
+                    searchRecyclerView(srch);
                 }
 
             }
@@ -75,9 +76,28 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+    private void initRecyclerView(){
+        Realm.init(this);
+        Realm rlm = Realm.getDefaultInstance();
+        List<Estoque> listOk = et.testeRecycler(rlm);
+        Adapter adp = new Adapter(listOk,this);
+        binding.rvConsulta.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvConsulta.setHasFixedSize(true);
+        binding.rvConsulta.setAdapter(adp);
+    }
 
+    private void searchRecyclerView(Adapter adp){
+        Realm.init(this);
+        Realm rlm = Realm.getDefaultInstance();
+        List<Estoque> listOk = et.testeRecycler(rlm);
+        //Adapter adp = new Adapter(listOk,this);
+        binding.rvConsulta.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvConsulta.setHasFixedSize(true);
+        binding.rvConsulta.setAdapter(adp);
+    }
+
+    @Override
+    public void onItemClicked(Estoque estoque) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Gerenciar.this);
         builder.setTitle("Selecione uma opção");
         builder.setItems(new CharSequence[]
@@ -88,13 +108,10 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
                         // of the selected item
                         switch (which) {
                             case 0:
-                                Log.i("HelloListView", "You clicked Item: " + id +
-                                        " at position:" + position);
                                 // Then you start a new Activity via Intent
                                 Intent intent = new Intent();
                                 intent.setClass(Gerenciar.this, Editar.class);
-                                intent.putExtra("produto",
-                                        String.valueOf(adapterView.getItemAtPosition(position)));
+                                intent.putExtra("idProduto",String.valueOf(estoque.get_id()));
                                 startActivity(intent);
                                 break;
                             case 1:
@@ -107,13 +124,8 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Realm realm = Realm.getDefaultInstance();
-                                        String item = adapterView.getItemAtPosition(position).toString();
-                                        et.deletar(realm, item);
-                                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                                                Gerenciar.this,
-                                                android.R.layout.simple_list_item_1,
-                                                et.read(realm));
-                                        txtConsulta.setAdapter(adapter);
+                                        et.deletar(realm, estoque.get_id());
+                                        initRecyclerView();
                                         Toast.makeText(getApplicationContext(),"Item deletado"
                                                 ,Toast.LENGTH_LONG).show();
                                     }
@@ -126,16 +138,5 @@ public class Gerenciar extends AppCompatActivity implements AdapterView.OnItemCl
                     }
                 });
         builder.create().show();
-        /*
-        Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position);
-        // Then you start a new Activity via Intent
-        Intent intent = new Intent();
-        intent.setClass(this, Editar.class);
-        intent.putExtra("produto", String.valueOf(adapterView.getItemAtPosition(position)));
-        startActivity(intent);
-
-         */
-
-
     }
 }

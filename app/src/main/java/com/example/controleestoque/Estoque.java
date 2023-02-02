@@ -114,9 +114,22 @@ public class Estoque extends RealmObject {
         return result;
     }
 
+    public List<Estoque> testeRecycler(Realm realm){
+        //Realm realm = Realm.getDefaultInstance();
+        String repor = "";
+        //List<String> result = new ArrayList<>();
+        List<Estoque> result = new ArrayList<>();
+        List<Estoque> et = realm.where(Estoque.class).findAll();
+        for (int i=0;i<et.size();i++){
+            result.add(et.get(i));
+        }
+
+        return result;
+    }
+
 
     //Função para pesquisar por nome
-    public List<String> pesquisaNome(Realm realm, String nome){
+    public List<String> pesquisaNome2(Realm realm, String nome){
         String repor = "";
         List<String> result = new ArrayList<>();
         RealmQuery<Estoque> query = realm.where(Estoque.class).like("nomeProduto", nome, Case.INSENSITIVE);
@@ -136,8 +149,19 @@ public class Estoque extends RealmObject {
         return result;
     }
 
+    public List<Estoque> pesquisaNome(Realm realm, String nome){
+        String repor = "";
+        List<Estoque> result = new ArrayList<>();
+        RealmQuery<Estoque> query = realm.where(Estoque.class).like("nomeProduto", nome, Case.INSENSITIVE);
+        RealmResults<Estoque> pesquisa = query.findAll();
+        for(int i=0;i<pesquisa.size();i++){
+            result.add(pesquisa.get(i));
+        }
+        return result;
+    }
+
     //Funçao para pesquisar por ID
-    public Estoque pesquisaID(Realm realm, int id){
+    public Estoque pesquisaID(Realm realm, long id){
         //String repor = "";
         List<String> result = new ArrayList<>();
         RealmQuery<Estoque> query = realm.where(Estoque.class).equalTo("_id", id);
@@ -153,7 +177,7 @@ public class Estoque extends RealmObject {
         return temp;
     }
 
-    public void editar(Realm realm, int id,String nome, double valor, int qtda, int qtdm){
+    public void editar(Realm realm, long id,String nome, double valor, int qtda, int qtdm){
         realm.beginTransaction();
         Estoque produto = realm.where(Estoque.class).equalTo("_id", id).findFirst();
         produto.setNomeProduto(nome);
@@ -164,10 +188,10 @@ public class Estoque extends RealmObject {
         realm.close();
     }
 
-    public void deletar(Realm realm, String item){
-        String idProduto = item.split(":|:\\s|\n")[1].trim();
+    public void deletar(Realm realm, long id){
+        //String idProduto = item.split(":|:\\s|\n")[1].trim();
         ///String idOk = idProduto[1].trim();
-        int id = Integer.parseInt(idProduto);
+        //int id = Integer.parseInt(idProduto);
 
         realm.beginTransaction();
         Estoque produto= realm.where(Estoque.class).equalTo("_id", id).findFirst();

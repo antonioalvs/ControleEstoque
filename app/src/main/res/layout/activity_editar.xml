@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Preço do produto:"
+        android:text="Preço do produto (R$):"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="@+id/txtEditNome"
         app:layout_constraintTop_toBottomOf="@+id/txtEditNome" />
@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number|numberDecimal"
+        android:digits="0123456789,"
         app:layout_constraintStart_toStartOf="@+id/lblValorEdit"
         app:layout_constraintTop_toBottomOf="@+id/lblValorEdit" />
 

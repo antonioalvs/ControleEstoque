@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    //Variáveis dos campos
     ImageButton ins; //Adicionar Item
     ImageButton es; //Entrada e saida
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Abre a activity de Gerenciar Estoque
         ger = findViewById(R.id.btnGerenciar);
         ger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Trocar para tela de cadastro
+        //Abre a acivity de adicionar produto
         ins = findViewById(R.id.btnAddItem);
         ins.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //Abre a acivity de entrada e saída
         es = findViewById(R.id.btnES);
         es.setOnClickListener(new View.OnClickListener() {
             @Override

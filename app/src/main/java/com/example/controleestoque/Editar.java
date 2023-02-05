@@ -44,7 +44,6 @@ public class Editar extends AppCompatActivity {
         //Instanciando produto selecionado
         Intent intent = getIntent();
         String produtoPesquisado = intent.getStringExtra("idProduto");
-        //int id = Integer.parseInt(produtoPesquisado.split(":|:\\s|\n")[1].trim());
         long id = Long.parseLong(produtoPesquisado);
         Estoque produto = new Estoque();
         produto = et.pesquisaID(realm, id);

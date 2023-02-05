@@ -1,19 +1,23 @@
 package com.example.controleestoque;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    Button ins; //Adicionar Item
-    Button rel; //Relatório
 
-    Button ger; //Gerenciar Estoque
+    ImageButton ins; //Adicionar Item
+    ImageButton es; //Entrada e saida
 
+    ImageButton ger; //Gerenciar Estoque
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        rel = findViewById(R.id.btnRelatorio);
-        rel.setOnClickListener(new View.OnClickListener() {
+        es = findViewById(R.id.btnES);
+        es.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent relatorio = new Intent(getApplicationContext(), Teste.class);
-                //startActivity(relatorio);
+                Intent entradaSaida = new Intent(getApplicationContext(), EntradaSaida.class);
+                startActivity(entradaSaida);
             }
         });
 

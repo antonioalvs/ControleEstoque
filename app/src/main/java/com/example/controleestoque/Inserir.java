@@ -4,6 +4,8 @@ import static com.example.controleestoque.Estoque.getUniqueId;
 
 import io.realm.Realm;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Inserir extends AppCompatActivity {
 
@@ -43,16 +46,17 @@ public class Inserir extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(Inserir.this); // Popup erro
 
         //Caracterizando Popups
-        //Popup sucesso
+        //Popup de erro
         alert.setTitle("Erro!");
         alert.setMessage("Verifique se todos os campos foram preenchidos e tente novamente!");
         alert.setCancelable(false);
         alert.setPositiveButton("Ok", null);
-        //Popup de erro
-        insertOK.setTitle("Produto Inserido");
-        insertOK.setMessage("O produto foi inserido com sucesso");
+        //Popup de sucesso
+        insertOK.setTitle("Inserir produto?");
+        //insertOK.setMessage("O produto foi inserido com sucesso");
         insertOK.setCancelable(false);
-        insertOK.setPositiveButton("Ok", null);
+        insertOK.setNegativeButton("Cancelar", null);
+        //insertOK.setPositiveButton("Ok", null);
 
         Estoque estoque = new Estoque(); //Instanciando classe do banco de Dados
         //Definindo texto do campo de código
@@ -67,23 +71,35 @@ public class Inserir extends AppCompatActivity {
 
                     //Variaveis comuns
                     String n; //nome
-                    String v; //valor
-                    int qta, qtm; // qtd atual e qtd minima
+
 
                     //Passando valor dos campos para variáveis
                     n = String.valueOf(nome.getText());
-                    v = String.valueOf(valor.getText());
-                    qta = Integer.parseInt(String.valueOf(qtdAtual.getText()));
-                    qtm = Integer.parseInt(String.valueOf(qtdMin.getText()));
-                    //Definindo ID do produto
-                    long idOk = getUniqueId(realm,Estoque.class);
-                    //Inserindo no Realm
-                    estoque.insert(realm,idOk,n,v,qta,qtm);
-                    idView.setText("Código do produto: " + String.valueOf(idOk+1));//Campo de código do produto
+                    //insertOK.setTitle("Produto Inserido");
+                    insertOK.setMessage("Deseja realmente inserir o produto "+ n+ "?");
+                    insertOK.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            String v; //valor
+                            int qta, qtm; // qtd atual e qtd minima
+                            v = String.valueOf(valor.getText());
+                            qta = Integer.parseInt(String.valueOf(qtdAtual.getText()));
+                            qtm = Integer.parseInt(String.valueOf(qtdMin.getText()));
+                            //Definindo ID do produto
+                            long idOk = getUniqueId(realm,Estoque.class);
+                            //Inserindo no Realm
+                            estoque.insert(realm,idOk,n,v,qta,qtm);
+                            idView.setText("Código do produto: " + (idOk + 1));//Campo de código do produto
+                            limpaCampos();
+                            Toast.makeText(getApplicationContext(),"Item inserido!"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    });
                     insertOK.create().show();
 
                     //Limpa campos
-                    limpaCampos();
+
                 }else{
                     alert.create().show();
                 }

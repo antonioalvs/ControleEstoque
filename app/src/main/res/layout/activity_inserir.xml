@@ -12,11 +12,12 @@
         android:id="@+id/lblCodigo"
         android:layout_width="190dp"
         android:layout_height="38dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="60dp"
         android:text="Codigo"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/txtNome"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -27,8 +28,8 @@
         android:ems="10"
         android:hint="Nome do produto"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/lblCodigo"
-        tools:layout_editor_absoluteX="58dp" />
+        app:layout_constraintStart_toStartOf="@+id/lblCodigo"
+        app:layout_constraintTop_toBottomOf="@+id/lblCodigo" />
 
     <EditText
         android:id="@+id/txtValor"
@@ -48,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:hint="Quantidade Atual"
+        android:hint="Quantidade em Estoque"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/txtQtdMin"
         app:layout_constraintTop_toBottomOf="@+id/txtQtdMin" />

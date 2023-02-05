@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EntradaSaida">
+
+    <TextView
+        android:id="@+id/lblESQtdAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="@+id/lblESProduto"
+        app:layout_constraintTop_toBottomOf="@+id/lblESProduto" />
+
+    <TextView
+        android:id="@+id/lblESProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="@+id/lbHint1"
+        app:layout_constraintTop_toBottomOf="@+id/txtESID" />
+
+    <TextView
+        android:id="@+id/lblESValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/lblESProduto"
+        app:layout_constraintTop_toTopOf="@+id/lblESProduto" />
+
+    <TextView
+        android:id="@+id/lbHint1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Insira o ID do item que deseja pesquisar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtESQtd"
+        android:layout_width="79dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/lblESQtdAtual"
+        app:layout_constraintTop_toBottomOf="@+id/lblESQtdAtual" />
+
+    <Button
+        android:id="@+id/btnEntrada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Entrada"
+        app:layout_constraintStart_toStartOf="@+id/txtESQtd"
+        app:layout_constraintTop_toBottomOf="@+id/txtESQtd" />
+
+    <Button
+        android:id="@+id/btnSaida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Saída"
+        app:layout_constraintStart_toStartOf="@+id/btnEntrada"
+        app:layout_constraintTop_toBottomOf="@+id/btnEntrada" />
+
+    <EditText
+        android:id="@+id/txtESID"
+        android:layout_width="79dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/lbHint1"
+        app:layout_constraintTop_toBottomOf="@+id/lbHint1" />
+
+    <TextView
+        android:id="@+id/lblHint2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insira a quantidade a ser movimentada:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/txtESQtd"
+        app:layout_constraintStart_toStartOf="@+id/txtESQtd" />
+
+    <Button
+        android:id="@+id/btnESPesquisar"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginStart="72dp"
+        android:text="Pesquisar"
+        app:layout_constraintStart_toEndOf="@+id/txtESID"
+        app:layout_constraintTop_toBottomOf="@+id/lbHint1" />
+
+    <TextView
+        android:id="@+id/lblESQtdm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="@+id/lblESQtdAtual"
+        app:layout_constraintTop_toBottomOf="@+id/lblESQtdAtual" />
+
+</android.support.constraint.ConstraintLayout>

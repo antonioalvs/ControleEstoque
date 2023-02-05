@@ -1,25 +1,19 @@
 package com.example.controleestoque;
 
 import android.annotation.SuppressLint;
-import android.content.ContextParams;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.controleestoque.databinding.ActivityGerenciarBinding;
-import com.example.controleestoque.databinding.ActivityTesteBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +68,11 @@ public class Gerenciar extends AppCompatActivity implements SelectListener{
         });
 
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initRecyclerView();
     }
 
     private void initRecyclerView(){

@@ -188,6 +188,22 @@ public class Estoque extends RealmObject {
         realm.close();
     }
 
+    public void entradaSaida(Realm realm, long id, int qtd, int util){
+        if(util == 1) {
+            realm.beginTransaction();
+            Estoque saida = new Estoque();
+            saida = realm.where(Estoque.class).equalTo("_id", id).findFirst();
+            saida.setQtdAtual(saida.getQtdAtual() - qtd);
+            realm.commitTransaction();
+        }else {
+            realm.beginTransaction();
+            Estoque entrada = new Estoque();
+            entrada = realm.where(Estoque.class).equalTo("_id", id).findFirst();
+            entrada.setQtdAtual(entrada.getQtdAtual() + qtd);
+            realm.commitTransaction();
+        }
+    }
+
     public void deletar(Realm realm, long id){
         //String idProduto = item.split(":|:\\s|\n")[1].trim();
         ///String idOk = idProduto[1].trim();

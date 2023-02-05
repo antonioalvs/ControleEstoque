@@ -51,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:enabled="false"
         android:inputType="numberSigned"
         app:layout_constraintStart_toStartOf="@+id/lblQtdAEdit"
         app:layout_constraintTop_toBottomOf="@+id/lblQtdAEdit" />
@@ -73,7 +74,7 @@
         android:text="Quantidade Minima:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="@+id/txtEditQtdA"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditQtdA" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/txtEditQtdM"
@@ -103,5 +104,15 @@
         android:text="Atualizar Produto"
         app:layout_constraintEnd_toEndOf="@+id/txtEditQtdM"
         app:layout_constraintTop_toBottomOf="@+id/txtEditQtdM" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:text="ⓘ Para alterar a quantidade em estoque use a opção &quot;ENTRADA/SAIDA DE PRODUTOS&quot;"
+        android:textColor="@color/teal_200"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/txtEditQtdA"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditQtdA" />
 
 </android.support.constraint.ConstraintLayout>

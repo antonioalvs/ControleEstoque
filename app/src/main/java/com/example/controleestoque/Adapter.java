@@ -3,11 +3,13 @@ package com.example.controleestoque;
 import static io.realm.Realm.getApplicationContext;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,14 +42,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int i) {
         String repor = "";
-        if(this.listaEstoque.get(i).getQtdMinima() < this.listaEstoque.get(i).getQtdAtual()){
+        if(this.listaEstoque.get(i).getQtdMinima() > this.listaEstoque.get(i).getQtdAtual()){
             repor = "(Repor Estoque)";
         }
         holder.alID.setText("Código:"+String.valueOf(listaEstoque.get(i).get_id()));
         holder.alNome.setText("Produto:"+this.listaEstoque.get(i).getNomeProduto());
         holder.alValor.setText("Preço: R$"+String.valueOf(this.listaEstoque.get(i).getValor()));
-        holder.alQtdAtual.setText("Quantidade em estoque:"+String.valueOf(this.listaEstoque.get(i).getQtdAtual()));
+        holder.alQtdAtual.setText("Em estoque: "+String.valueOf(this.listaEstoque.get(i).getQtdAtual()));
         holder.alRepor.setText(repor);
+        if(listaEstoque.get(i).getQtdAtual() < listaEstoque.get(i).getQtdMinima()){
+            holder.img.setImageResource(R.drawable.pdnotok);
+        }else{
+            holder.img.setImageResource(R.drawable.pdok);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +79,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
         private TextView alRepor;
 
+        private ImageView img;
+
 
 
         public ViewHolder(View view) {
@@ -85,7 +94,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             alQtdAtual = view.findViewById(R.id.alQtdAtual);
             alQtdMinima = view.findViewById(R.id.alQtdMinima);
             alRepor = view.findViewById(R.id.alRepor);
-
+            img = view.findViewById(R.id.imageView);
         }
     }
 }

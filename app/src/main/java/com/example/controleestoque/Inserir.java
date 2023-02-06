@@ -157,13 +157,16 @@ public class Inserir extends AppCompatActivity {
         if(valor.getText().toString().length() == 0){
             return true;
         }else{
-            //String preco = String.valueOf(v);
-            String util[] = v.split(",");
-            if(util.length == 2){
-                if(util[1].length() > 2){
-                    return false;
-                }else{
+            String util[] = v.split("[,\\.]");
+            if(util.length <= 2){
+                if(util.length == 1){
                     return true;
+                }else{
+                    if(util[1].length() > 2){
+                        return false;
+                    }else{
+                        return true;
+                    }
                 }
             }else{
                 return false;
@@ -175,9 +178,15 @@ public class Inserir extends AppCompatActivity {
     //Retorna o Preço corrigido para double substituindo a ," por "."
     public Double converteValor(String v){
         Double valor;
-        String util[] = v.split(",");
-        String temp = util[0] + "." + util[1];
-        valor = Double.valueOf(temp);
-        return valor;
+        String util[] = v.split("[,\\.]");
+        if(util.length == 1){
+            valor = Double.valueOf(v);
+            return valor;
+        }else{
+            String temp = util[0] + "." + util[1];
+            valor = Double.valueOf(temp);
+            return valor;
+        }
+
     }
 }

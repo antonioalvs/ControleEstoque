@@ -111,7 +111,7 @@ public class Editar extends AppCompatActivity {
             return true;
         }else{
             //String preco = String.valueOf(v);
-            String util[] = v.split(",");
+            String util[] = v.split("[,\\.]");
             if(util.length == 2){
                 if(util[1].length() > 2){
                     return false;
@@ -125,12 +125,17 @@ public class Editar extends AppCompatActivity {
         }
     }
     //Retorna o Preço corrigido para double substituindo a "," por "."
-    public Double converteValor(String v){
+    public Double converteValor(String v) {
         Double valor;
-        String util[] = v.split(",");
-        String temp = util[0] + "." + util[1];
-        valor = Double.valueOf(temp);
-        return valor;
+        String util[] = v.split("[,\\.]");
+        if (util.length == 1) {
+            valor = Double.valueOf(v);
+            return valor;
+        } else {
+            String temp = util[0] + "." + util[1];
+            valor = Double.valueOf(temp);
+            return valor;
+        }
     }
     //Retorna a string substituindo ponto por virgula
     public String converteCampo(double v){

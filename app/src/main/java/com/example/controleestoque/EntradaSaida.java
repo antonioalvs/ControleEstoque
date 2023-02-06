@@ -1,6 +1,7 @@
 package com.example.controleestoque;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,19 @@ public class EntradaSaida extends AppCompatActivity {
         qtdM = findViewById(R.id.lblESQtdm);
         //Coloca o cursor no campo de ID
         id.requestFocus();
+
+        //Verifica se veio por meio do gerenciar estoque ou se foi aberto por meio da activity principal
+        Intent intent = getIntent();
+        String produtoPesquisado = intent.getStringExtra("idProduto");
+        if(produtoPesquisado != null){
+            //Quando o produto vem por meio do "gerenciar estoque", busca o produto para efetuar movimentações
+            et = et.pesquisaID(realm, Long.parseLong(produtoPesquisado));
+            nome.setText("Produto Pesquisado: " + et.getNomeProduto());
+            qtdA.setText("Quantidade em estoque: " + String.valueOf(et.getQtdAtual()));
+            qtdM.setText("Quantidade mínima: " + String.valueOf(et.getQtdMinima()));
+            valor.setText("Preço: R$" + converteCampo(et.getValor()));
+            estoqueOk(et.getQtdAtual(), et.getQtdMinima());
+        }
 
         AlertDialog.Builder alert = new AlertDialog.Builder(EntradaSaida.this);
         alert.setTitle("Erro!");

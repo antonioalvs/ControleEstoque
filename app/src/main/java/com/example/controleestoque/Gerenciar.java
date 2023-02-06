@@ -103,7 +103,7 @@ public class Gerenciar extends AppCompatActivity implements SelectListener{
         AlertDialog.Builder builder = new AlertDialog.Builder(Gerenciar.this);
         builder.setTitle("Selecione uma opção");
         builder.setItems(new CharSequence[]
-                        {"Editar", "Deletar"},
+                        {"Editar", "Deletar","Entrada/Saída"},
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
@@ -137,6 +137,13 @@ public class Gerenciar extends AppCompatActivity implements SelectListener{
                                 //Função para caso a exclusão seja negada
                                 deletar.setNegativeButton("Não", null);
                                 deletar.create().show();
+                                break;
+                            case 2:
+                                //Abre a activity de entrada e saída e envia o ID para pesquisa
+                                Intent es = new Intent();
+                                es.setClass(Gerenciar.this, EntradaSaida.class);
+                                es.putExtra("idProduto",String.valueOf(estoque.get_id()));
+                                startActivity(es);
                                 break;
                         }
                     }
